@@ -1,0 +1,31 @@
+{{- if not .Values.rbac.useClusterRole }}
+{{- range $key, $value := .Values.services }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "restart-controller.fullname" $ }}
+  namespace: {{ $key }}
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "statefulsets"]
+    verbs: ["get", "list", "watch", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "restart-controller.fullname" $ }}
+  namespace: {{ $key }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "restart-controller.serviceAccountName" $ }}
+    namespace: {{ $.Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ include "restart-controller.fullname" $ }}
+  apiGroup: rbac.authorization.k8s.io
+---
+{{- end }}
+{{- end }}
