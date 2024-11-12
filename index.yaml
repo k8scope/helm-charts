@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   restart-controller:
   - apiVersion: v2
+    appVersion: v0.2.0
+    created: "2024-11-12T10:12:06.837819781Z"
+    description: A Helm chart for Kubernetes
+    digest: a79b06dc5143f17b094740315d80aca7c71bfa9c8334e7cc25f1b701fd5598f5
+    name: restart-controller
+    type: application
+    urls:
+    - https://github.com/k8scope/helm-charts/releases/download/restart-controller-0.2.0/restart-controller-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: v0.1.0
     created: "2024-10-04T23:51:55.527055321Z"
     description: A Helm chart for Kubernetes
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/k8scope/helm-charts/releases/download/restart-controller-0.1.0/restart-controller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-04T23:51:55.527065801Z"
+generated: "2024-11-12T10:12:06.837828938Z"
